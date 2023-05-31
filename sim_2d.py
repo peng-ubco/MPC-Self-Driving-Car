@@ -30,7 +30,7 @@ def sim_run(options, MPC):
 
     state_i = np.array([[0,0,0,0]])
     u_i = np.array([[0,0]])
-    sim_total = 250
+    sim_total = 200
     predict_info = [state_i]
 
     for i in range(1,sim_total+1):
@@ -110,7 +110,7 @@ def sim_run(options, MPC):
 
     # Obstacles
     if OBSTACLES:
-        patch_obs = mpatches.Circle((mpc.x_obs, mpc.y_obs),0.5)
+        patch_obs = mpatches.Circle((mpc.x_obs, mpc.y_obs), 0.5, fill=True, fc='k')
         ax.add_patch(patch_obs)
 
     # Speed Indicator
@@ -162,6 +162,6 @@ def sim_run(options, MPC):
     # Animation.
     car_ani = animation.FuncAnimation(fig, plot_update, frames=range(1,len(state_i)),
                                       interval=100, repeat=True, blit=False)
-    car_ani.save('mpc_2d_demo.gif')
+    # car_ani.save('mpc_2d_demo.gif')
 
     plt.show()
